@@ -1,5 +1,6 @@
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "a5.h"
 //Q1
 int strind(const char *s, char c){
@@ -42,4 +43,29 @@ char *strrepeat(const char *s, size_t n){
         strcat(newStr, s);
     }
     return newStr;
+}
+//Q4
+void strselfcat(char **s){
+    int length = strlen(*s);
+    char *s_new = realloc(*s, 2 * length + 1);
+    if (!s_new) {
+        exit(EXIT_FAILURE);
+    }
+    memcpy(s_new + length, s_new, length);
+    s_new[2*length] = '\0';
+    *s = s_new;
+    
+}
+//Q5
+void strrmlast(char *s, char c){
+    int length = strlen(s);
+    int i = length - 1;
+    int found = 0;
+    while(i >= 0 && found != 1){
+        if(s[i] == c){
+            memmove(s + i, s + i + 1, length - i);
+            found = 1;
+        }
+        i--;
+    }
 }
