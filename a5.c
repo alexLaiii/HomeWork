@@ -38,6 +38,9 @@ char strmaxfreq(const char *s){
 char *strrepeat(const char *s, size_t n){
     size_t length = strlen(s);
     char *newStr = malloc((length * n) + 1);
+    if (!newStr){
+        return NULL;
+    }
     newStr[0] = '\0';
     for(size_t i = 0; i < n; i++){
         strcat(newStr, s);
